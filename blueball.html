@@ -44,9 +44,14 @@
             </ol>
             <button type="button" id="btnPlayGame" ng-click="startGame()">Play Game</button>
         </div>
-        <div class="row" ng-show="isVisiblePlayBoard">
+        <div class="row" ng-show="isVisiblePlayBoard" ng-model="playBoard">
+
+            <div>
+                <h3>Chances : {{ chances }}</h3>
+                <h3>Status : {{ gameStatus }}</h3>
+            </div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3" ng-repeat="ball in balls">
-                <Button id="{{ ball.number }}" type="button" class="ball" ng-style="ball.style" ng-click="setColor($event)">{{ ball.number }}</Button>
+                <Button id="{{ ball.number }}" type="button" class="ball" ng-style="ball.style" ng-click="processPlayerInput($event)">{{ ball.number }}</Button>
             </div>
         </div>
     </div>

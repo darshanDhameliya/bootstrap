@@ -5,8 +5,10 @@ var selectedButtonNumber;
 
 var blueBallApp = angular.module("BlueBall.app", []);
 blueBallApp.controller("Game", ["$scope", "$timeout", function($scope, $timeout) {
+    $scope.chances = 3;
     $scope.isVisibleRulesMenu = true;
     $scope.isVisiblePlayBoard = false;
+    $scope.gameStatus = "in-progress";
     $scope.rules = ['You will get only three chances',
         'If you guess lower number than expected the balls will turn green',
         'If you guess Higher number than expected the balls will turn run'
@@ -16,17 +18,27 @@ blueBallApp.controller("Game", ["$scope", "$timeout", function($scope, $timeout)
         $scope.isVisiblePlayBoard = true;
         loadBalls();
     };
-    $scope.setColor = function(event) {
-        selectedButtonNumber = event.target.id - 1;
-        $scope.balls[selectedButtonNumber].style.backgroundColor = checkAnswer(event.target.id);
-    };
+    $scope.processPlayerInput = function(event) {
+        checkAnswer(event.target.id);
+        checkGameOver();
 
+        $scope.chances--;
+    };
+    var checkGameOver = function() {
+        if ($scope.chances <= 1)
+            $scope.gameStatus = "game over";
+
+    };
     var checkAnswer = function(number) {
+        if (number == answer) {
+            $scope.balls[number - 1].style.backgroundColor = '#2e86d9';
+            $scope.gameStatus = "win";
+        }
         if (number < answer)
-            return '#34a84f';
+            $scope.balls[number - 1].style.backgroundColor = '#34a84f';
         if (number > answer)
-            return '#f22440';
-        return '#2e86d9';
+            $scope.balls[number - 1].style.backgroundColor = '#f22440';
+
     };
     var loadBalls = function() {
         answer = Math.floor(Math.random() * TOTAL_BALLS) + 1;
@@ -37,4 +49,5 @@ blueBallApp.controller("Game", ["$scope", "$timeout", function($scope, $timeout)
             $scope.balls.push({ number: index, style: { backgroundColor: 'gray' } });
         }
     }
+
 }]);
