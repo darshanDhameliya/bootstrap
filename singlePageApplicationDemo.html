@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="jquery-3.4.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="angular.js"></script>
+    <script src="angular-route.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body ng-app="myApp">
+    <script type="text/ng-template" id="pages/home.html">
+        <h1>Home</h1>
+        <h3>{{message}}</h3>
+    </script>
+    <script type="text/ng-template" id="pages/blog.html">
+        <h1>Blog</h1>
+        <h3>{{message}}</h3>
+    </script>
+    <script type="text/ng-template" id="pages/about.html">
+        <h1>About</h1>
+        <h3>{{message}}</h3>
+    </script>
+
+    <a href="#!/home">Home</a>
+    <a href="#!/blog">Blog</a>
+    <a href="#!/about">About</a>
+
+    <div ng-view></div>
+
+    <script>
+        var app = angular.module('myApp', ['ngRoute']);
+
+        app.config(function($routeProvider) {
+            $routeProvider
+
+                .when('/home', {
+                templateUrl: 'pages/home.html',
+                controller: 'HomeController'
+            })
+
+            .when('/blog', {
+                templateUrl: 'pages/blog.html',
+                controller: 'BlogController'
+            })
+
+            .when('/about', {
+                templateUrl: 'pages/about.html',
+                controller: 'AboutController'
+            })
+
+            .otherwise({
+                redirectTo: '/'
+            });
+        });
+        app.controller('HomeController', function($scope) {
+            $scope.message = 'Hello from HomeController';
+        });
+
+        app.controller('BlogController', function($scope) {
+            $scope.message = 'Hello from BlogController';
+        });
+
+        app.controller('AboutController', function($scope) {
+            $scope.message = 'Hello from AboutController';
+        });
+    </script>
+</body>
+
+</html>

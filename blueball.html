@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <style>
+        .ball {
+            /* Green */
+            border: none;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 50%;
+            height: 70px;
+            width: 70px;
+        }
+        
+        #balls {
+            padding-right: 340px;
+            padding-left: 340px;
+        }
+    </style>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="angular.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="blueball.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body ng-app="BlueBall.app">
+    <div class="container" ng-controller="Game">
+        <div ng-show="isVisibleRulesMenu">
+            <div class="jumbotron text-center">
+                <h1>Blue Ball</h1>
+            </div>
+            <h3>Rules</h3>
+            <ol>
+                <li ng-repeat="rule in rules"> {{ rule }} </li>
+            </ol>
+            <button type="button" id="btnPlayGame" ng-click="startGame()">Play Game</button>
+        </div>
+        <div class="row" ng-show="isVisiblePlayBoard">
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3" ng-repeat="ball in balls">
+                <Button id="{{ ball.number }}" type="button" class="ball" ng-style="ball.style" ng-click="setColor($event)">{{ ball.number }}</Button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

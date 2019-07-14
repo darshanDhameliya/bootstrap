@@ -1,0 +1,40 @@
+th {
+    background-color: RGB(68, 162, 255);
+    color: white;
+    height: 40px;
+    padding-left: 30px;
+}
+
+td {
+    padding-left: 30px;
+}
+
+.columnName {
+    color: RGB(68, 162, 255);
+}
+
+.productsDetailsTable {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+#btnImageToggle {
+    background-color: RGB(68, 162, 255);
+    color: white;
+}
+
+table {
+    border: 1px solid RGB(68, 162, 255);
+}
+
+span.stars,
+span.stars span {
+    display: block;
+    background: url('https://apppresser.com/wp-content/uploads/2015/11/stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}

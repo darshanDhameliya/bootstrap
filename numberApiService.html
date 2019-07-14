@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number Api Service</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="angular.js"></script>
+    <script src="numberApiService.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body class="container" ng-app="numberApi.app">
+    <div class="jumbotron">
+        <h3>Number Api</h3>
+    </div>
+    <div ng-controller="numberApiController">
+        <input type="number" id=nbNumber ng-model="number">
+        <button id=btnNumberApiOk ng-click=getNumberApiResult()>Ok</button>
+        <p>{{ answerNumberApi }}</p>
+    </div>
+
+</body>
+
+</html>

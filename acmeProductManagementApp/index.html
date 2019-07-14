@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Acme Product Management</title>
+
+    <script src="lib/jquery-3.4.1.js"></script>
+    <script src="lib/js/bootstrap.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/myApp.css">
+
+</head>
+
+<body ng-app="acmeProductManagement.app">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#">Acme Product Management</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#!/">Home</a></li>
+                    <li><a href="#!/productList">Product List</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div ng-view></div>
+    <script>
+        var acmeProductManagementApp = angular.module('acmeProductManagement.app', ['ngRoute']);
+
+        acmeProductManagementApp.config(function($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'home.html'
+                })
+                .when('/productList', {
+                    templateUrl: 'productList.html',
+                    controller: 'productsDetailsController'
+                })
+                .when('/productDetail/:productId', {
+                    templateUrl: 'productDetail.html'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+        });
+
+        var totalProductRatingStar = 5;
+
+        acmeProductManagementApp.controller('productsDetailsController', ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+            $scope.columnsName = ['Product', 'Code', 'Available', 'Price', '5 Star Rating'];
+            $scope.productDetailList = [];
+            $scope.isVisibleImage = false;
+            $scope.imageToggleButtonName = "Hide Image";
+            $http.get("https://api.myjson.com/bins/hjapr")
+                .then(function(response) {
+                    $scope.productDetailList = response.data;
+                });
+            $scope.toggleImage = function() {
+                $scope.imageToggleButtonName == "Hide Image" ? $scope.imageToggleButtonName = "Show Image" : $scope.imageToggleButtonName = "Hide Image";
+                $scope.isVisibleImage ? $scope.isVisibleImage = false : $scope.isVisibleImage = true;
+            };
+            $scope.getStars = function(rating) {
+                var val = parseFloat(rating);
+                var size = val / totalProductRatingStar * 100;
+                return size + '%';
+            }
+
+
+            console.log($routeParams.productId);
+            // $scope.selectProductId = $routeParams.productId;
+            // for (const iterator of $scope.productDetailList) {
+            //     if (iterator.productId == $scope.productId) {
+            //         $scope.selectedProductDetail = iterator;
+            //     }
+            // }
+        }]);
+    </script>
+</body>
+
+</html>

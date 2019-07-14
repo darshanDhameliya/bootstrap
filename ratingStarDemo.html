@@ -1,0 +1,77 @@
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Angular Star Rating</title>
+
+    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+
+    <style>
+        span.stars,
+        span.stars span {
+            display: block;
+            /* Download the star image here: http://stackoverflow.com/questions/1987524/turn-a-number-into-star-rating-display-using-jquery-and-css */
+            background: url('https://apppresser.com/wp-content/uploads/2015/11/stars.png') 0 -16px repeat-x;
+            width: 80px;
+            height: 16px;
+        }
+        
+        span.stars span {
+            background-position: 0 0;
+        }
+        
+        .alignright {
+            float: right;
+        }
+    </style>
+</head>
+
+<body ng-controller="MyCtrl">
+
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Star Rating</h1>
+    </ion-header-bar>
+
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="rating in ratings">
+                {{rating.name}}
+                <span class="stars alignright">
+          <span ng-style="{ 'width': getStars(rating.number) }"></span>
+                </span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+    <script>
+        angular.module('myApp', ['ionic'])
+
+        .controller('MyCtrl', function($scope) {
+
+            $scope.ratings = [{
+                name: 'Service',
+                number: '4.5'
+            }, {
+                name: 'Food',
+                number: '3.25987'
+            }, {
+                name: 'Speed',
+                number: '1.25987'
+            }];
+
+            $scope.getStars = function(rating) {
+                // Get the value
+                var val = parseFloat(rating);
+                // Turn value into number/100
+                var size = val / 5 * 100;
+                return size + '%';
+            }
+
+        });
+    </script>
+</body>
+
+</html>
