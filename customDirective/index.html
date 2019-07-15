@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Custom directives </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <script src="angular.js"></script>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="bootstrap.js"></script>
+</head>
+
+<body ng-app="swabhavHeader.app">
+
+    <div class="container">
+        <swabhav-Header></swabhav-Header>
+
+        <div ng-controller="studentController">
+            <custom-Grid items="list">
+            </custom-Grid>
+        </div>
+
+        <swabhav-Footer></swabhav-Footer>
+    </div>
+    <script>
+        var customDirectives = angular.module("swabhavHeader.app", []);
+        customDirectives.controller('studentController', ['$scope',
+            function($scope) {
+                $scope.list = [{
+                    "id": "4ba9b847-2eee-4bc2-8a6f-8aff5b985f76",
+                    "rollNo": 21,
+                    "name": "darshan",
+                    "age": 19,
+                    "email": "darshan@gmail.com",
+                    "date": "2019-07-18T18:30:00.000Z",
+                    "isMale": false
+                }, {
+                    "id": "dec99d0c-dfe0-4568-877a-8b3b48061a98",
+                    "rollNo": 23,
+                    "name": "dhanraj",
+                    "age": 20,
+                    "email": "dhanraj@gmail.com",
+                    "date": "2019-07-18T18:30:00.000Z",
+                    "isMale": false
+                }, {
+                    "id": "80631c4b-7fff-43c4-83d5-a7eaeba9d7d8",
+                    "rollNo": 1,
+                    "name": "abc",
+                    "age": 10,
+                    "email": "an@abc.com",
+                    "date": "2019-07-11",
+                    "isMale": true
+                }]
+            }
+        ]);
+        customDirectives.directive('swabhavHeader',
+            function() {
+                return {
+                    restrict: 'EA',
+                    templateUrl: 'swabhavHeader.tpl.html'
+                }
+            }
+        );
+        customDirectives.directive('swabhavFooter',
+            function() {
+                return {
+                    restrict: 'EA',
+                    templateUrl: 'swabhavFooter.tpl.html'
+                }
+            }
+        );
+        customDirectives.directive('customGrid',
+            function() {
+                return {
+                    restrict: 'EA',
+                    templateUrl: 'customGrid.tpl.html',
+                    scope: {
+                        items: '=',
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+
+</html>

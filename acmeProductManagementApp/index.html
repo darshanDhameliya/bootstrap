@@ -48,7 +48,7 @@
                     templateUrl: 'productList.html',
                     controller: 'productsDetailsController'
                 })
-                .when('/productDetail/:productId', {
+                .when('/productDetail', {
                     templateUrl: 'productDetail.html'
                 })
                 .otherwise({
@@ -58,7 +58,7 @@
 
         var totalProductRatingStar = 5;
 
-        acmeProductManagementApp.controller('productsDetailsController', ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+        acmeProductManagementApp.controller('productsDetailsController', ["$scope", "$http", "$routeParams", function($scope, $http) {
             $scope.columnsName = ['Product', 'Code', 'Available', 'Price', '5 Star Rating'];
             $scope.productDetailList = [];
             $scope.isVisibleImage = false;
@@ -76,15 +76,6 @@
                 var size = val / totalProductRatingStar * 100;
                 return size + '%';
             }
-
-
-            console.log($routeParams.productId);
-            // $scope.selectProductId = $routeParams.productId;
-            // for (const iterator of $scope.productDetailList) {
-            //     if (iterator.productId == $scope.productId) {
-            //         $scope.selectedProductDetail = iterator;
-            //     }
-            // }
         }]);
     </script>
 </body>

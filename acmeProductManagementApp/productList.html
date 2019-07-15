@@ -16,7 +16,7 @@
         </tr>
         <tr ng-repeat="productDetail in productDetailList | filter : searchProduct">
             <td><img ng-src="{{ productDetail.imageUrl }}" alt="" height="50px" width="50px" ng-hide="isVisibleImage"></td>
-            <td><a href="#!/productDetail/{{ productDetail.productId }}">{{ productDetail.productName }}</a></td>
+            <td><a href="#!/productDetail">{{ productDetail.productName }}</a></td>
             <td>{{ productDetail.productCode }}</td>
             <td>{{ productDetail.releaseDate }}</td>
             <td>{{ productDetail.price }}</td>

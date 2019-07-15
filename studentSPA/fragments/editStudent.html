@@ -1,0 +1,50 @@
+<table>
+    <tr>
+        <td>Name :</td>
+        <td> <input ng-model="name" type="text" class="form-control"></td>
+    </tr>
+    <tr>
+        <td>Roll number : </td>
+        <td><input ng-model="rollNumber" type="number" class="form-control"></td>
+    </tr>
+    <tr>
+        <td>Age : </td>
+        <td><input ng-model="age" type="number" class="form-control"></td>
+    </tr>
+    <tr>
+        <td>email : </td>
+        <td><input ng-model="email" type="email" class="form-control"></td>
+    </tr>
+    <tr>
+        <td>date : </td>
+        <td><input ng-model="date" type="text" class="date"></td>
+    </tr>
+    <tr>
+        <td>Is male :</td>
+        <td>
+            <div class="radio">
+                <label>
+                    <input ng-model="isMale" type="radio"  ng-value="true">
+                      True
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input ng-model="isMale" type="radio"  ng-value="false">
+                      False
+                </label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="label-danger ">
+                {{inputError}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <button type="button" ng-click="editStudentData()">Edit Student</button></td>
+    </tr>
+</table>

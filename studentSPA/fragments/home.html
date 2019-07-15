@@ -1,0 +1,9 @@
+<div class="container">
+    <div ng-repeat="student in studentList" class="jumbotron col-md-6 col-xs-12">
+        <p ng-repeat="(key, val) in student">
+            {{ key }}:{{ val }}
+        </p>
+        <a href="#!/editStudent/{{student.id}}">Edit</a>
+        <button ng-click="deleteStudentdata(student.id)">Delete</button>
+    </div>
+</div>
